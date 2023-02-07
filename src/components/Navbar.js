@@ -1,15 +1,17 @@
 import React from 'react'
-import {Link, Navigate,useNavigate, useLocation } from "react-router-dom";
+import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
 import Dropdownuser from './Dropdownuser';
+import Button from '@mui/material/Button';
+import { motion } from 'framer-motion';
 
 const Navbar = (props) => {
     let location = useLocation();
-    let navigate=useNavigate()
+    let navigate = useNavigate()
 
-    const handleLogout=()=>{
+    const handleLogout = () => {
         localStorage.removeItem("token");
         navigate("/login");
-        props.showAlert("Logged Out successfully","success")
+        props.showAlert("Logged Out successfully", "success")
     }
 
     return (
@@ -22,22 +24,27 @@ const Navbar = (props) => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>
+                            <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={`nav-link ${location.pathname==="/about" ? "active" : ""}`} to="/about">About</Link>
+                            <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>
                         </li>
                     </ul>
                     {/* check if logged in or not */}
-                        {!localStorage.getItem('token')?
+                    {!localStorage.getItem('token') ?
                         <form className="d-flex">
-                        <Link className="btn btn-primary mx-3" to="/login" role="button">Login</Link>
-                        <Link className="btn btn-primary mx-3" to="/signup" role="button">Signup</Link> </form> : 
-                        <form className="d-flex">
-                        <Dropdownuser className="mx-5"/>
-                        <button className="btn btn-primary mx-5" onClick={handleLogout}>Logout</button>
+                            <Link className="btn btn-primary mx-3" to="/login" role="button">Login</Link>
+                            <Link className="btn btn-primary mx-3" to="/signup" role="button" >Signup</Link> </form> :
+                        <form className="d-flex" >
+                            <Dropdownuser className="mx-5" />
+
+                            <Button className='mx-5' variant="contained" color='info' onClick={handleLogout} component={motion.div}
+                                whileHover={{
+                                    scale: 1.1,
+                                    transition: { duration: 0.3 }
+                                }}>Logout</Button>
                         </form>
-                        }
+                    }
                 </div>
             </div>
         </nav>

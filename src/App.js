@@ -17,6 +17,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import { useState } from 'react';
 
+
 function App() {
   const [alert, setalert] = useState(null);
 
@@ -36,7 +37,7 @@ function App() {
         <Router>
           <Navbar showAlert={showAlert}/>
           <Alert alert={alert}/>
-          <div className="container">
+          <div >
             <Routes>
               <Route exact path="/" element={<Home showAlert={showAlert}/>} />
               <Route exact path="/about" element={<About />} />

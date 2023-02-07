@@ -1,8 +1,16 @@
 import React from 'react'
+import bgimagehome1 from '../images/bgimage.jpg';
+
+import { motion } from 'framer-motion';
+
 const About = () => {
 
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${bgimagehome1})`, "height": "100vh", "width": "100vw", "position": "absolute", "background-size": "cover" }}>
+    <motion.div className='container' 
+      initial={{y:"-10vh",opacity:0}}
+      animate={{y:"0vh",opacity:1}}
+      transition= {{ duration: 0.8 }}>
       <h2 className="my-5">
         About Duly Noted.
       </h2>
@@ -14,7 +22,7 @@ const About = () => {
             </button>
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
+            <div class="accordion-body" >
               <strong>Duly Noted. A CRUD app made using MERN stack. </strong> 
               <p>A backend database has been created which stores user data and notes linked to that particular user.</p>
               <p>Users can create, read, update and delete only their notes. They will not have access to other user's notes. This was made possible using an authorization token which is associated with each user.</p>
@@ -44,6 +52,7 @@ const About = () => {
           </div>
         </div>
       </div>
+    </motion.div>
     </div>
   )
 }
